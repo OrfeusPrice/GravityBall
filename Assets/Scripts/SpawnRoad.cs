@@ -13,9 +13,9 @@ public class SpawnRoad : MonoBehaviour
 
     GameObject nRight;
     GameObject nLeft;
-    
-    int rr = 3;
-    int rl = 3;
+
+    float rr = 3;
+    float rl = 3;
 
     void Start()
     {
@@ -34,18 +34,26 @@ public class SpawnRoad : MonoBehaviour
         nRight.transform.position = right.transform.position;
         nLeft.transform.position = left.transform.position;
 
-        if (rr < 1.5f) { rr = 4; }
-        nRight.transform.localScale = new Vector3(0.2f, (Random.value + 0.1f) * rr, 0);
+        if (rr < 1.5f) { rr = 2.5f; }
+        nRight.transform.localScale = new Vector3(0.3f, (Random.value + 0.05f) * rr, 0);
+        //nRight.GetComponent<SpriteRenderer>().color = Color.red;
         rl = 6 - rr;
-        if (rl < 1.5f) { rl = 4; }
-        nLeft.transform.localScale = new Vector3(0.2f, (Random.value + 0.1f) * rl, 0);
+        if (rl < 1.5f) { rl = 2.5f; }
+        nLeft.transform.localScale = new Vector3(0.3f, (Random.value + 0.05f) * rl, 0);
+        //nLeft.GetComponent<SpriteRenderer>().color = Color.red;
         rr = 6 - rr;
 
 
-        if (nRight.transform.localScale.y < 1)
-            nLeft.transform.localScale = new Vector3(0.2f, 3, 0);
-        if (nLeft.transform.localScale.y < 1)
-            nRight.transform.localScale = new Vector3(0.2f, 3, 0);
+        if (nLeft.transform.localScale.y <= 1.5f)
+        {
+            nLeft.transform.localScale = new Vector3(0.3f, 2f, 0);
+            //nLeft.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        if (nRight.transform.localScale.y <= 1.5f)
+        {
+            nRight.transform.localScale = new Vector3(0.3f, 2f, 0);
+            //nRight.GetComponent<SpriteRenderer>().color = Color.green;
+        }
 
         Instantiate(nRight);
         Instantiate(nLeft);
